@@ -1,1 +1,1 @@
-https://components.not-js.ru/
+http://components.not-js.ru/
