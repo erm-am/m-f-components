@@ -1,9 +1,9 @@
 import { useState, useCallback, useEffect } from "react";
 import { getPrevMonth, getNextMonth } from "./utils";
 
-export const useDatePosition = (currentDay) => {
-  const [currentMonthPosition, setCurrentMonthPosition] = useState(currentDay);
-  const [selectedDay, setSelectedDay] = useState(currentDay);
+export const useDatePosition = (activeDate: Date) => {
+  const [currentMonthPosition, setCurrentMonthPosition] = useState(activeDate);
+  const [selectedDay, setSelectedDay] = useState(activeDate);
 
   const handleClickPrev = useCallback(() => {
     const newDate = getPrevMonth(currentMonthPosition);
@@ -21,9 +21,9 @@ export const useDatePosition = (currentDay) => {
   }, []);
 
   useEffect(() => {
-    setSelectedDay(currentDay);
-    setCurrentMonthPosition(currentDay);
-  }, [currentDay]);
+    setSelectedDay(activeDate);
+    setCurrentMonthPosition(activeDate);
+  }, [activeDate]);
 
   return {
     currentMonthPosition,
