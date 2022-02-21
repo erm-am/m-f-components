@@ -8,9 +8,10 @@ import { checkSelectedDay, getFullCalendarData } from "./utils";
 import { WEEK_DAYS } from "./constants";
 
 import { useDatePosition } from "./useDatePosition";
+import { ICalendarDay } from "./types";
 interface ICalendarProps {
   activeDate: Date;
-  onDayClick: any;
+  onDayClick: (day: ICalendarDay) => void;
   className?: string;
 }
 
@@ -31,9 +32,10 @@ export const Calendar: React.FC<ICalendarProps> = React.memo((props) => {
           ))}
         </WeekDaysContainer>
         <DaysContainer>
-          {days.map((day, index) => {
+          {days.map((day: ICalendarDay, index) => {
             const isSelectedDay = checkSelectedDay(day.date, selectedDay);
             const isToday = day.isToday;
+            console.log({ Day: day.day, selectedDay, isSelectedDay });
             return (
               <StyledDay today={isToday} selected={isSelectedDay} onClick={() => handleClickOnDay(day)} key={index}>
                 {day.day}

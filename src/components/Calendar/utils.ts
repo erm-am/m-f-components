@@ -16,7 +16,7 @@ import checkCurrentDay from "date-fns/isToday";
 import getDayOfYear from "date-fns/getDayOfYear";
 
 import { MONTH_NAMES } from "./constants";
-import { ICalendarDay, CalendarDay, DayType, CombinedCalendarDays } from "./types";
+import { ICalendarDay, RawCalendarDay, DayType, CombinedCalendarDays } from "./types";
 
 export const getMonthNameByDate = (dateValue: Date) => {
   // Получаем название месяца из Date
@@ -62,16 +62,16 @@ export const getAlldaysNextMonth = (dateValue: Date): Date[] => {
 
 export const getCombinedCalendarDays = (dateValue: Date = new Date()): CombinedCalendarDays => {
   // Получить дни текущего, предыдущего и следующего месяца
-  const prevMonthData: CalendarDay<"prevMonth">[] = getAlldaysPrevMonth(dateValue).map((date) => ({ date, dayType: "prevMonth" }));
-  const currentMonthData: CalendarDay<"currentMonth">[] = getAlldaysCurrentMonth(dateValue).map((date) => ({ date, dayType: "currentMonth" }));
-  const nextMonthData: CalendarDay<"nextMonth">[] = getAlldaysNextMonth(dateValue).map((date) => ({ date, dayType: "nextMonth" }));
+  const prevMonthData: RawCalendarDay<"prevMonth">[] = getAlldaysPrevMonth(dateValue).map((date) => ({ date, dayType: "prevMonth" }));
+  const currentMonthData: RawCalendarDay<"currentMonth">[] = getAlldaysCurrentMonth(dateValue).map((date) => ({ date, dayType: "currentMonth" }));
+  const nextMonthData: RawCalendarDay<"nextMonth">[] = getAlldaysNextMonth(dateValue).map((date) => ({ date, dayType: "nextMonth" }));
   return [prevMonthData, currentMonthData, nextMonthData];
 };
-export const checkSelectedDay = (date: Date, selectedDay: Date) => isEqual(selectedDay, date); // Выбранный день пользователя?
+export const checkSelectedDay = (date: Date, selectedDay: Date) => format(selectedDay, "dd.MM.yyyy") === format(date, "dd.MM.yyyy");
 export const getPrevMonth = (dateValue: Date) => subMonths(dateValue, 1);
 export const getNextMonth = (dateValue: Date) => addMonths(dateValue, 1);
 
-const prepareDay = (calendarDate: CalendarDay<DayType>): ICalendarDay => {
+const prepareDay = (calendarDate: RawCalendarDay<DayType>): ICalendarDay => {
   // Создаем расширенную информацию о переданном дне
   const day = getDate(calendarDate.date);
   const month = getMonth(calendarDate.date);
