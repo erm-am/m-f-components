@@ -1,19 +1,19 @@
-/* eslint-disable max-len */
-import getMonth from "date-fns/getMonth";
-import getYear from "date-fns/getYear";
-import checkDate from "date-fns/isDate";
-import getDate from "date-fns/getDate";
-import isEqual from "date-fns/isEqual";
-import eachDay from "date-fns/eachDayOfInterval";
-import startOfMonth from "date-fns/startOfMonth";
-import endOfMonth from "date-fns/endOfMonth";
-import addMonths from "date-fns/addMonths";
-import subMonths from "date-fns/subMonths";
-import getISODay from "date-fns/getISODay";
-import checkWeekend from "date-fns/isWeekend";
-import format from "date-fns/format";
-import checkCurrentDay from "date-fns/isToday";
-import getDayOfYear from "date-fns/getDayOfYear";
+import {
+  getMonth,
+  getYear,
+  isDate as checkDate,
+  getDate,
+  eachDayOfInterval as eachDay,
+  startOfMonth,
+  endOfMonth,
+  addMonths,
+  subMonths,
+  getISODay,
+  isWeekend as checkWeekend,
+  format,
+  isToday as checkCurrentDay,
+  getDayOfYear,
+} from "date-fns";
 
 import { MONTH_NAMES } from "./constants";
 import { ICalendarDay, RawCalendarDay, DayType, CombinedCalendarDays } from "./types";

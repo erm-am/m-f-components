@@ -3,7 +3,7 @@
 /* eslint-disable no-plusplus */
 
 import React, { useCallback, useMemo } from "react";
-import { Container, Header, Body, Caption, WeekDaysContainer, WeekCell, DaysContainer, StyledDay } from "./styled";
+import { Container, Header, Body, Caption, WeekDaysContainer, WeekCell, DaysContainer, Day } from "./styled";
 import { checkSelectedDay, getFullCalendarData } from "./utils";
 import { WEEK_DAYS } from "./constants";
 
@@ -35,11 +35,11 @@ export const Calendar: React.FC<ICalendarProps> = React.memo((props) => {
           {days.map((day: ICalendarDay, index) => {
             const isSelectedDay = checkSelectedDay(day.date, selectedDay);
             const isToday = day.isToday;
-            console.log({ Day: day.day, selectedDay, isSelectedDay });
+
             return (
-              <StyledDay today={isToday} selected={isSelectedDay} onClick={() => handleClickOnDay(day)} key={index}>
+              <Day today={isToday} selected={isSelectedDay} onClick={() => handleClickOnDay(day)} key={index}>
                 {day.day}
-              </StyledDay>
+              </Day>
             );
           })}
         </DaysContainer>

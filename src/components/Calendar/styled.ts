@@ -1,5 +1,9 @@
 import styled, { css } from "styled-components";
 
+interface IStyledDay {
+  selected: boolean;
+  today: boolean;
+}
 export const Container = styled.div`
   display: inline-flex;
   flex-direction: column;
@@ -40,13 +44,13 @@ export const DaysContainer = styled.div`
   gap: 10px;
 `;
 
-export const StyledDay = styled.div<any>`
+export const Day = styled.div<IStyledDay>`
   font-weight: normal;
   display: flex;
   justify-content: center;
   align-items: center;
   border: 1px solid black;
-  color: ${(props) => (props.color ? props.color : "black")};
+  color: black;
 
   ${(props) =>
     props.selected &&

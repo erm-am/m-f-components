@@ -23,7 +23,6 @@ class ErrorBoundary extends Component<IProps, IState> {
   render() {
     const { error } = this.state;
     if (error) {
-      console.log(this.state);
       return <ErrorBoundaryFallbackComponent />;
     }
     return this.props.children;
